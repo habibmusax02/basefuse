@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fusionverse × Basefuse — Build Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0c;
+  --bg2: #131313;
+  --bg3: #1a1a1a;
+  --bg4: #222222;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --border3: rgba(255,255,255,0.22);
+  --text: #ececec;
+  --muted: #777;
+  --muted2: #555;
+  --accent: #ffffff;
+  --bf: #4ade80;
+  --fv: #fbbf24;
+  --info: #60a5fa;
+  --phase1: #4ade80;
+  --phase2: #60a5fa;
+  --phase3: #f59e0b;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(12,12,12,0.92);
+  backdrop-filter: blur(20px);
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.header-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: -0.3px; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.logo-dot { width: 7px; height: 7px; background: var(--bf); border-radius: 50%; }
+.header-tag {
+  font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
+}
+
+/* HERO */
+.hero {
+  padding: 80px 48px 64px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -120px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(74,222,128,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--muted2);
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -2px; color: #fff;
+  max-width: 700px; margin-bottom: 20px;
+}
+.hero h1 span { color: var(--muted2); }
+.hero-sub {
+  max-width: 560px; color: var(--muted); line-height: 1.7;
+  margin-bottom: 40px; font-size: 13px;
+}
+.hero-stats {
+  display: flex; gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  width: fit-content;
+}
+.hero-stat {
+  padding: 16px 28px; border-right: 1px solid var(--border);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px; font-weight: 800; color: #fff;
+  letter-spacing: -1px; margin-bottom: 2px;
+}
+.hero-stat-lbl { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* PRINCIPLES */
+.principles {
+  padding: 56px 48px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+}
+.principles-label {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); padding-top: 4px;
+}
+.principles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+}
+.principle-card { background: var(--bg2); padding: 24px; }
+.principle-icon { font-size: 18px; margin-bottom: 12px; }
+.principle-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.principle-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* PHASE NAV */
+.phase-nav {
+  padding: 32px 48px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.phase-nav-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--muted); }
+.phase-tabs { display: flex; gap: 8px; }
+.ptab {
+  padding: 8px 18px; border-radius: 8px;
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  cursor: pointer; border: 1px solid var(--border2);
+  background: transparent; color: var(--muted);
+  transition: all 0.2s; letter-spacing: 0.02em;
+}
+.ptab:hover { color: var(--text); border-color: var(--border3); }
+.ptab.active { color: #000; font-weight: 500; }
+.ptab[data-phase="0"].active { background: var(--phase1); border-color: var(--phase1); }
+.ptab[data-phase="1"].active { background: var(--phase2); border-color: var(--phase2); }
+.ptab[data-phase="2"].active { background: var(--phase3); border-color: var(--phase3); }
+
+/* PHASE CONTENT */
+.phase { display: none; padding: 0 48px 64px; }
+.phase.active { display: block; }
+
+.phase-header {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  display: grid; grid-template-columns: 1fr 280px;
+  gap: 48px; align-items: start;
+}
+.phase-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 80px; font-weight: 800;
+  color: var(--border2); line-height: 1;
+  letter-spacing: -4px; margin-bottom: 8px;
+}
+.phase-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+  color: #fff; margin-bottom: 12px;
+}
+.phase-tagline { color: var(--muted); line-height: 1.7; max-width: 480px; font-size: 13px; }
+.phase-meta-box {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+}
+.meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px;
+}
+.meta-row:last-child { border-bottom: none; }
+.meta-key { color: var(--muted); }
+.meta-val { color: var(--text); font-weight: 400; }
+
+/* BUILDS */
+.builds-label {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px;
+}
+.builds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 48px; }
+.build {
+  background: var(--bg2); padding: 28px;
+  transition: background 0.15s; cursor: default;
+  position: relative;
+}
+.build:hover { background: var(--bg3); }
+.build-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 12px; }
+.build-label-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.build-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px;
+}
+.tag-bf { background: rgba(74,222,128,0.1); color: var(--bf); }
+.tag-fv { background: rgba(251,191,36,0.1); color: var(--fv); }
+.build-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700; color: #fff; line-height: 1.2;
+}
+.build-priority {
+  font-size: 11px; color: var(--muted); white-space: nowrap; padding-top: 2px;
+}
+.build-desc { color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-size: 13px; }
+.build-mvp {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 8px; padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.mvp-label {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px; font-weight: 500;
+}
+.mvp-text { font-size: 12px; color: var(--text); line-height: 1.7; }
+.build-effort {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--muted);
+}
+.effort-bar { display: flex; gap: 3px; }
+.effort-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); }
+.effort-dot.on { background: var(--bf); }
+.effort-dot.on-fv { background: var(--fv); }
+
+/* OUTCOMES */
+.outcomes-section { margin-bottom: 48px; }
+.outcomes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.outcome {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+}
+.outcome-icon { font-size: 20px; margin-bottom: 10px; }
+.outcome-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.outcome-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+/* NORTH STAR */
+.northstar {
+  margin: 0 0 48px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 16px; padding: 32px 36px;
+  position: relative; overflow: hidden;
+}
+.northstar::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.northstar-label {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.northstar-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 800; color: #fff; line-height: 1.2;
+  letter-spacing: -0.5px; max-width: 680px;
+}
+.northstar-text em { font-style: normal; color: var(--bf); }
+
+/* TIMELINE */
+.timeline-section { padding: 56px 48px; border-top: 1px solid var(--border); }
+.timeline-header { margin-bottom: 40px; }
+.timeline-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1px; color: #fff; margin-bottom: 8px; }
+.timeline-sub { color: var(--muted); font-size: 13px; }
+.timeline { position: relative; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 16px; top: 24px; bottom: 24px; width: 1px;
+  background: var(--border2);
+}
+.trow {
+  display: grid; grid-template-columns: 48px 1fr;
+  gap: 20px; margin-bottom: 32px; align-items: start;
+}
+.trow:last-child { margin-bottom: 0; }
+.t-dot {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; flex-shrink: 0;
+  margin-top: 2px; position: relative; z-index: 1;
+}
+.t-dot.p1 { background: rgba(74,222,128,0.15); color: var(--phase1); border: 1px solid rgba(74,222,128,0.3); }
+.t-dot.p2 { background: rgba(96,165,250,0.15); color: var(--phase2); border: 1px solid rgba(96,165,250,0.3); }
+.t-dot.p3 { background: rgba(245,158,11,0.15); color: var(--phase3); border: 1px solid rgba(245,158,11,0.3); }
+.t-content { padding: 6px 0 24px; border-bottom: 1px solid var(--border); }
+.trow:last-child .t-content { border-bottom: none; }
+.t-phase { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+.t-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.t-desc { font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 560px; }
+.t-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.chip {
+  font-size: 10px; letter-spacing: 0.04em; padding: 3px 10px;
+  border-radius: 4px; border: 1px solid var(--border2); color: var(--muted);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--muted2);
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-brand { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--muted); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--muted2); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header, .hero, .principles, .phase, .phase-nav, .timeline-section, footer { padding-left: 20px; padding-right: 20px; }
+  .hero h1 { letter-spacing: -1px; }
+  .principles { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: 1fr; }
+  .phase-header { grid-template-columns: 1fr; }
+  .phase-meta-box { display: none; }
+  .builds-grid { grid-template-columns: 1fr; }
+  .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  .phase-tabs { flex-wrap: wrap; }
+  .hero-stats { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <div class="logo-dot"></div>
+    Fusionverse × Basefuse
+  </div>
+  <div class="header-tag">Build Roadmap · 2026</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Strategic build document</div>
+  <h1>Scale in every<br><span>market condition.</span></h1>
+  <p class="hero-sub">A phased execution plan for Fusionverse and Basefuse — turning what you've already built into infrastructure that Web3 can't function without, bull or bear.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-lbl">Phases</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">12</div>
+      <div class="hero-stat-lbl">Initiatives</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">12mo</div>
+      <div class="hero-stat-lbl">Full runway</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">∞</div>
+      <div class="hero-stat-lbl">Market cycles</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles">
+  <div class="principles-label">Core thesis</div>
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="principle-icon">🔒</div>
+      <div class="principle-title">Trust is infrastructure</div>
+      <p class="principle-desc">Reputation data, contributor scores, and project accountability don't lose value when prices drop. Build the thing that every project needs to be credible.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-icon">📉</div>
+      <div class="principle-title">Bear-first design</div>
+      <p class="principle-desc">Every feature gets stress-tested against one question: does this still have value when sentiment is at zero? If yes, build it. If no, deprioritise it.</p>
+    </div>
+    <div class="principle-card">
+      <div class="principle-icon">🔁</div>
+      <div class="principle-title">Data compounds</div>
+      <p class="principle-desc">Five years of real on-chain contribution history cannot be replicated from scratch. The moat is time × quality data. Start accumulating now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NORTH STAR -->
+<div style="padding: 0 48px 0; margin-top: 48px;">
+<div class="northstar">
+  <div class="northstar-label">North star</div>
+  <div class="northstar-text">
+    Basefuse becomes the <em>reputation protocol</em> of Web3.<br>
+    Fusionverse becomes the <em>gateway</em> every serious project needs.
+  </div>
+</div>
+</div>
+
+<!-- PHASE NAV -->
+<div class="phase-nav" style="margin-top: 48px;">
+  <div class="phase-nav-title">Roadmap phases</div>
+  <div class="phase-tabs">
+    <button class="ptab active" data-phase="0" onclick="showPhase(0)">Phase 1 — Now</button>
+    <button class="ptab" data-phase="1" onclick="showPhase(1)">Phase 2 — Month 1–3</button>
+    <button class="ptab" data-phase="2" onclick="showPhase(2)">Phase 3 — Month 6–12</button>
+  </div>
+</div>
+
+<!-- PHASE 1 -->
+<section class="phase active" id="phase-0">
+  <div class="phase-header">
+    <div>
+      <div class="phase-num">01</div>
+      <div class="phase-h1">Lock in the<br>trust layer</div>
+      <p class="phase-tagline">These are the highest leverage moves you can make right now. Low build complexity, immediate impact on how credible and sticky your ecosystem feels. None of these require a developer — they require discipline.</p>
+    </div>
+    <div class="phase-meta-box">
+      <div class="meta-row"><span class="meta-key">Timeline</span><span class="meta-val">Start immediately</span></div>
+      <div class="meta-row"><span class="meta-key">Build effort</span><span class="meta-val">Low</span></div>
+      <div class="meta-row"><span class="meta-key">New revenue</span><span class="meta-val">$99–$500/mo</span></div>
+      <div class="meta-row"><span class="meta-key">Primary goal</span><span class="meta-val">Trust + stickiness</span></div>
+      <div class="meta-row"><span class="meta-key">Bear-safe?</span><span class="meta-val" style="color:var(--bf);">Yes ✓</span></div>
+    </div>
+  </div>
+
+  <div class="builds-label">Initiatives</div>
+  <div class="builds-grid">
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">Contributor reputation scores</div>
+        </div>
+        <div class="build-priority">Priority #1</div>
+      </div>
+      <p class="build-desc">Every task completed, every campaign finished — tracked as a permanent score inside the bot. Contributors build a record that follows them across every project forever. In bear markets, serious builders keep contributing because their reputation is their career.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A score (0–1000) shown in the bot per user. Increases when tasks are completed, decreases if flagged for spam. Visible on a /profile command. Nothing on-chain yet — a database is fine to start. One week to build.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">Project accountability scores</div>
+        </div>
+        <div class="build-priority">Priority #2</div>
+      </div>
+      <p class="build-desc">Rate projects on payout reliability, communication quality, and whether they delivered what they promised. Contributors see this before joining a campaign. Projects with low scores can't attract talent. Bad actors get filtered structurally.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">After each reward cycle, contributors rate the project 1–5 in the bot. Average shown on the project listing. Projects below 3.0 get a warning flag. Simple, but changes project behaviour immediately.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">Project vetting and verification</div>
+        </div>
+        <div class="build-priority">Priority #3</div>
+      </div>
+      <p class="build-desc">Before a project lists on Basefuse, Fusionverse runs a structured check — team identity, contract audit status, tokenomics review, community health. Verified projects get a badge that signals safety to contributors. In bear markets, people are paranoid. Verification becomes essential, not optional.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A form intake, manual review by the team, and a simple Verified / Not Verified status on the bot listing. No automation needed yet — just a clear process and a badge that means something. Zero dev cost.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">Ecosystem intelligence reports</div>
+        </div>
+        <div class="build-priority">Priority #4</div>
+      </div>
+      <p class="build-desc">Monthly reports using data already inside Basefuse — top projects, contributor growth, campaign performance, active chains, reward distribution. Sell to VCs, launchpads, and project teams. Pure recurring revenue with no dependency on market conditions.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A PDF report published monthly. First 3 editions free to build credibility. Then gated at $99/month. Costs almost nothing to produce — the data is already there. First paying subscribers validate the intelligence product entirely.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="builds-label">Phase outcomes</div>
+  <div class="outcomes-grid">
+    <div class="outcome">
+      <div class="outcome-icon">🏆</div>
+      <div class="outcome-title">Proof of work</div>
+      <p class="outcome-desc">Contributors have a permanent record. Reputation can't be faked or reset.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🛡️</div>
+      <div class="outcome-title">Bad actors filtered</div>
+      <p class="outcome-desc">Low-accountability projects can't access quality contributors. Quality self-selects.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">💰</div>
+      <div class="outcome-title">First stable revenue</div>
+      <p class="outcome-desc">Intelligence reports generate MRR with zero technical overhead.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🔒</div>
+      <div class="outcome-title">Market trust signal</div>
+      <p class="outcome-desc">Fusionverse Verified badge becomes a credibility marker across Web3.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section class="phase" id="phase-1">
+  <div class="phase-header">
+    <div>
+      <div class="phase-num">02</div>
+      <div class="phase-h1">Build the<br>marketplace layer</div>
+      <p class="phase-tagline">Once trust infrastructure is in place, build what connects supply and demand at scale. This is where Basefuse becomes a platform, not just a bot — and where FusionVerse starts generating serious recurring revenue.</p>
+    </div>
+    <div class="phase-meta-box">
+      <div class="meta-row"><span class="meta-key">Timeline</span><span class="meta-val">Months 1–3</span></div>
+      <div class="meta-row"><span class="meta-key">Build effort</span><span class="meta-val">Medium</span></div>
+      <div class="meta-row"><span class="meta-key">New revenue</span><span class="meta-val">$5k–$20k/mo</span></div>
+      <div class="meta-row"><span class="meta-key">Primary goal</span><span class="meta-val">Retention + revenue</span></div>
+      <div class="meta-row"><span class="meta-key">Bear-safe?</span><span class="meta-val" style="color:var(--bf);">Yes ✓</span></div>
+    </div>
+  </div>
+
+  <div class="builds-label">Initiatives</div>
+  <div class="builds-grid">
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">Basefuse ID — persistent identity</div>
+        </div>
+        <div class="build-priority">Priority #1</div>
+      </div>
+      <p class="build-desc">A persistent contributor profile — score, history, skills, earnings, badges — that travels across every project on the bot. Projects can filter contributors by score when setting up campaigns. The thing that makes contributors never want to leave.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">/profile command shows score, total earnings, campaigns completed, top skills, and join date. Projects can set a minimum score requirement for campaign access. This one feature alone drives contributor retention harder than anything else.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">Contribution insurance pool</div>
+        </div>
+        <div class="build-priority">Priority #2</div>
+      </div>
+      <p class="build-desc">A small percentage of every reward pool goes into escrow. If a project fails to pay contributors after a campaign ends, the fund auto-distributes. Solves the single biggest trust problem in Web3 contribution — and does it structurally, not on faith.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">2% of every campaign's reward pool auto-held. If project doesn't pay within 72 hours of cycle end, pool distributes to contributors. Start with manual oversight — automate once the process is proven. This is the thing that attracts serious contributors long-term.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">Collab matching engine</div>
+        </div>
+        <div class="build-priority">Priority #3</div>
+      </div>
+      <p class="build-desc">Projects post what they need — developer, designer, community manager, writer. Matched to verified contributors based on Basefuse reputation and skills. LinkedIn for Web3, but with proof of work instead of self-reported credentials. Works in every market — talent always needs projects and projects always need talent.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A form on fusionverse.cc where projects post a need. Fusionverse manually matches and intros both sides. Charge projects a flat $200 matching fee. Automate the matching once volume justifies the build.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">FusionVerse Academy</div>
+        </div>
+        <div class="build-priority">Priority #4</div>
+      </div>
+      <p class="build-desc">Structured learning paths for Web3 contributors — content writing, community management, Base development, project evaluation. Completions boost Basefuse reputation score. Bear markets are when people upskill — own that moment and capture the audience before the next bull cycle.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">3–5 course modules as Telegram mini-app pages or a simple website. Quiz at the end. Pass = +50 reputation points on Basefuse. Doesn't need to be fancy — the score incentive is what drives completion.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="builds-label">Phase outcomes</div>
+  <div class="outcomes-grid">
+    <div class="outcome">
+      <div class="outcome-icon">🔐</div>
+      <div class="outcome-title">Contributors locked in</div>
+      <p class="outcome-desc">Identity and history mean contributors can't simply leave for a competitor.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">💸</div>
+      <div class="outcome-title">Payouts guaranteed</div>
+      <p class="outcome-desc">Insurance pool makes contribution structurally safe — not faith-based.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🤝</div>
+      <div class="outcome-title">Network effects grow</div>
+      <p class="outcome-desc">Matching engine creates two-sided flywheel between projects and talent.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">📈</div>
+      <div class="outcome-title">Bear market audience</div>
+      <p class="outcome-desc">Academy captures upskilling demand — competes with nobody doing this right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 3 -->
+<section class="phase" id="phase-2">
+  <div class="phase-header">
+    <div>
+      <div class="phase-num">03</div>
+      <div class="phase-h1">Become the<br>infrastructure</div>
+      <p class="phase-tagline">This is where reputation moves on-chain, Basefuse becomes white-label infrastructure that other platforms deploy, and Fusionverse becomes the trusted gateway no serious Web3 project can skip. This phase creates the moat nobody can replicate.</p>
+    </div>
+    <div class="phase-meta-box">
+      <div class="meta-row"><span class="meta-key">Timeline</span><span class="meta-val">Months 6–12</span></div>
+      <div class="meta-row"><span class="meta-key">Build effort</span><span class="meta-val">High</span></div>
+      <div class="meta-row"><span class="meta-key">New revenue</span><span class="meta-val">$30k–$100k/mo</span></div>
+      <div class="meta-row"><span class="meta-key">Primary goal</span><span class="meta-val">Moat + scale</span></div>
+      <div class="meta-row"><span class="meta-key">Bear-safe?</span><span class="meta-val" style="color:var(--bf);">Yes ✓</span></div>
+    </div>
+  </div>
+
+  <div class="builds-label">Initiatives</div>
+  <div class="builds-grid">
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">On-chain reputation protocol</div>
+        </div>
+        <div class="build-priority">The moat</div>
+      </div>
+      <p class="build-desc">Reputation scores move from the database to Base chain. Non-transferable soulbound NFT badges for contribution milestones. History is verifiable by any project, wallet, or launchpad — permanently. This is the thing nobody can copy if you start now.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A simple Base contract that mints a soulbound score NFT when a contributor crosses 500 points. Metadata updates on-chain monthly. Any project can query it before allowing campaign access. Five years of real data on-chain is an irreplaceable competitive advantage.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-bf">Basefuse</span>
+          </div>
+          <div class="build-title">Basefuse Alerts — early warning</div>
+        </div>
+        <div class="build-priority">Priority #2</div>
+      </div>
+      <p class="build-desc">Monitor on-chain signals for every listed project. Unusual liquidity movements, team wallet activity, contract changes — automatically flagged and sent to contributors inside the bot. In bear markets this is survival information. Projects with clean signals benefit too — they get separated from scams automatically.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">Webhook from Dune Analytics or Nansen monitoring top 5 wallet addresses per project. If a large outflow is detected in a 24-hour window, push a Telegram alert to all active contributors in that campaign. Simple setup, extremely high perceived value.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot on"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">White-label Basefuse</div>
+        </div>
+        <div class="build-priority">Biggest revenue lever</div>
+      </div>
+      <p class="build-desc">Sell Basefuse as deployable infrastructure to launchpads, DAOs, and accelerators who want to run their own contribution ecosystem under their brand. They get the bot, the scoring system, the pools, the analytics — you get a high-ticket B2B contract that doesn't fluctuate with token prices.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A separate bot instance with configurable branding connected to Fusionverse's backend. Charge $2,000–$5,000/month per deployment. Three clients at this price point covers an entire team's salaries. This is the revenue model that makes the business fundable.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build">
+      <div class="build-header">
+        <div>
+          <div class="build-label-row">
+            <span class="build-tag tag-fv">FusionVerse</span>
+          </div>
+          <div class="build-title">Bear market survival program</div>
+        </div>
+        <div class="build-priority">Priority #4</div>
+      </div>
+      <p class="build-desc">A packaged service for projects struggling in downturns — treasury management strategy, community retention playbooks, product pivot support. Most agencies disappear when markets go down. Being present and useful during the bear is how you lock in the clients who 10x their budgets in the bull.</p>
+      <div class="build-mvp">
+        <div class="mvp-label">MVP looks like</div>
+        <div class="mvp-text">A fixed $1,500 engagement: 2-week audit of project health, written 90-day survival playbook, one strategy call per month. Position it as "the service that keeps projects alive". Five clients at this price is $7,500 MRR that has nothing to do with bull sentiment.</div>
+      </div>
+      <div class="build-effort">
+        <span>Build effort</span>
+        <div class="effort-bar">
+          <div class="effort-dot on-fv"></div><div class="effort-dot on-fv"></div><div class="effort-dot"></div><div class="effort-dot"></div><div class="effort-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="builds-label">Phase outcomes</div>
+  <div class="outcomes-grid">
+    <div class="outcome">
+      <div class="outcome-icon">⛓️</div>
+      <div class="outcome-title">Permanent moat</div>
+      <p class="outcome-desc">On-chain reputation history cannot be replicated — it's time-gated by definition.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🏢</div>
+      <div class="outcome-title">B2B revenue unlocked</div>
+      <p class="outcome-desc">White-label contracts are high-ticket, recurring, and market-independent.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🔔</div>
+      <div class="outcome-title">Contributor protection</div>
+      <p class="outcome-desc">On-chain alerts make Basefuse the safest place to contribute in Web3.</p>
+    </div>
+    <div class="outcome">
+      <div class="outcome-icon">🌐</div>
+      <div class="outcome-title">Protocol status</div>
+      <p class="outcome-desc">Other platforms build on Basefuse. Fusionverse becomes the standard.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-header">
+    <div class="timeline-title">12-month view</div>
+    <div class="timeline-sub">Every initiative in sequence — what ships when and why the order matters.</div>
+  </div>
+  <div class="timeline">
+    <div class="trow">
+      <div class="t-dot p1">W1</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 1</div>
+        <div class="t-title">Contributor reputation scores go live</div>
+        <p class="t-desc">The /profile command is built. Scores start accumulating. This is day one of your data moat — the longer this runs before competitors notice, the better.</p>
+        <div class="t-chips"><span class="chip">Basefuse</span><span class="chip">Database</span><span class="chip">Bot command</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p1">W2</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 1</div>
+        <div class="t-title">Project accountability ratings + vetting badge</div>
+        <p class="t-desc">Post-cycle ratings go live. Fusionverse vetting process formalised. First Verified badges issued. These two things together change how the ecosystem feels within days.</p>
+        <div class="t-chips"><span class="chip">Basefuse</span><span class="chip">FusionVerse</span><span class="chip">Manual process</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p1">M1</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 1</div>
+        <div class="t-title">First ecosystem intelligence report published</div>
+        <p class="t-desc">Free edition goes out to launchpads and VCs. Establishes Fusionverse as a data-backed authority on Web3 contributor activity. First paid subscriptions by end of month.</p>
+        <div class="t-chips"><span class="chip">FusionVerse</span><span class="chip">PDF report</span><span class="chip">Revenue</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p2">M2</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 2</div>
+        <div class="t-title">Basefuse ID launches — contributor profiles go persistent</div>
+        <p class="t-desc">Full contributor identity is live. History, skills, earnings all in one profile. Projects start filtering by score. Contributor churn drops significantly as reputation becomes valuable.</p>
+        <div class="t-chips"><span class="chip">Basefuse</span><span class="chip">Identity system</span><span class="chip">Retention</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p2">M3</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 2</div>
+        <div class="t-title">Insurance pool + collab matching engine go live</div>
+        <p class="t-desc">Contributors are now structurally protected. First paid matching fees collected. FusionVerse Academy launches first 3 modules. These three combined signal to the market that this is a serious platform.</p>
+        <div class="t-chips"><span class="chip">Basefuse</span><span class="chip">FusionVerse</span><span class="chip">Escrow</span><span class="chip">Academy</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p3">M6</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 3</div>
+        <div class="t-title">Basefuse Alerts + bear market program launch</div>
+        <p class="t-desc">On-chain monitoring goes live. First alert notifications sent. Bear market survival program offered to struggling projects. This phase is timed to coincide with the next market correction cycle if one comes.</p>
+        <div class="t-chips"><span class="chip">Basefuse</span><span class="chip">FusionVerse</span><span class="chip">On-chain</span><span class="chip">B2B service</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p3">M9</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 3</div>
+        <div class="t-title">On-chain reputation protocol deploys on Base</div>
+        <p class="t-desc">First soulbound NFTs minted for contributors above 500 points. Reputation data is now permanently verifiable. This is the moment Basefuse stops being a bot and starts being a protocol.</p>
+        <div class="t-chips"><span class="chip">Base chain</span><span class="chip">Soulbound NFT</span><span class="chip">Smart contract</span></div>
+      </div>
+    </div>
+    <div class="trow">
+      <div class="t-dot p3">M12</div>
+      <div class="t-content">
+        <div class="t-phase">Phase 3</div>
+        <div class="t-title">White-label Basefuse — first enterprise contracts signed</div>
+        <p class="t-desc">First launchpad or DAO deploys a white-label Basefuse instance. This is the revenue milestone that makes the business fundable — recurring B2B contracts at $2k–$5k/month, independent of token prices.</p>
+        <div class="t-chips"><span class="chip">FusionVerse</span><span class="chip">White-label</span><span class="chip">Enterprise</span><span class="chip">B2B revenue</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Fusionverse × Basefuse</div>
+  <div class="footer-links">
+    <a href="https://fusionverse.cc" target="_blank">fusionverse.cc</a>
+    <a href="https://t.me/Basefusebot" target="_blank">Basefuse Bot</a>
+    <a href="https://x.com/fusionverse01" target="_blank">@fusionverse01</a>
+    <a href="https://x.com/basefuse9" target="_blank">@basefuse9</a>
+  </div>
+  <div>Build Roadmap · 2026</div>
+</footer>
+
+<script>
+function showPhase(i) {
+  document.querySelectorAll('.phase').forEach((el, j) => {
+    el.classList.toggle('active', i === j);
+  });
+  document.querySelectorAll('.ptab').forEach((el, j) => {
+    el.classList.toggle('active', i === j);
+  });
+  const phaseEl = document.getElementById('phase-' + i);
+  if (phaseEl) phaseEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
